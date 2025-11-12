@@ -1,0 +1,27 @@
+<div class="container text-white text-center p-5">
+    <h2>Información personal</h2>
+    <table class="table table-bordered mt-5" *ngIf="empleado">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apellido</th>
+                <th>Oficio</th>
+                <th>Salario</th>
+                <th>Director</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ empleado.idEmpleado }}</td>
+                <td>{{ empleado.apellido }}</td>
+                <td>{{ empleado.oficio }}</td>
+                <td>{{ empleado.salario }}</td>
+                <td>{{ empleado.salario | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container">
+        <a class="btn btn-primary me-2" [routerLink]="['/subordinates']">Ver Subordinados</a>
+        <button class="btn btn-danger ms-2" (click)="logout()">Logout</button>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container text-white text-center p-5">
+    <h2>Lista de Subordinados</h2>
+    <table class="table table-bordered mt-5" *ngIf="empleados.length > 0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apellido</th>
+                <th>Oficio</th>
+                <th>Salario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of empleados">
+                <td>{{ empleado.idEmpleado }}</td>
+                <td>{{ empleado.apellido }}</td>
+                <td>{{ empleado.oficio }}</td>
+                <td>{{ empleado.salario | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="bg-danger mt-4 mb-4 rounded-2 w-50 ms-auto me-auto py-3" *ngIf="empleados.length == 0">
+        <h5 >No existen subordinados para este usuario.</h5>
+    </div>
+    <div class="container">
+        <a class="btn btn-primary me-2" [routerLink]="['/profile']">Volver</a>
+        <button class="btn btn-danger ms-2" (click)="logout()">Logout</button>
+    </div>
+</div>

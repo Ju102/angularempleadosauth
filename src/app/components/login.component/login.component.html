@@ -1,0 +1,15 @@
+<div class="container text-white pt-5">
+    <form #loginForm="ngForm" class="w-25 ms-auto me-auto rounded-3 border-black p-5"
+        style="background-color: #004D61;">
+        <h4 class="text-center">Login</h4>
+        <label class="form-label">Username: </label>
+        <input class="form-control border-black" type="text" name="cajauser" #cajauser />
+        <label class="form-label">Password: </label>
+        <input class="form-control border-black" type="text" name="cajapassword" #cajapassword />
+        <button class="btn btn-light fw-bold mt-4 w-50 border-black border-2 d-block mx-auto"
+            (click)="tryLogin()">Login</button>
+    </form>
+    <div class="container bg-danger">
+        <p>{{ mensaje }}</p>
+    </div>
+</div>
