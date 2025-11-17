@@ -24,14 +24,28 @@ export class LoginComponent {
 
     let tryLogin = new Login(tryUser, tryPassword);
 
-    this._service.login(tryLogin).subscribe((response) => {
-      if (response.response) {
-        console.log("Credenciales correctas. Redirigiendo a perfil...");
-        this._service.saveToken(response.response);
-        this._router.navigate(['profile']);
-      }
-      else {
-        alert("Username o password incorrecto.");
+    this._service.login(tryLogin).subscribe({
+      next: (response) => {
+        if (response.response) {
+          console.log("Credenciales correctas. Redirigiendo a perfil...");
+          this._service.saveToken(response.response);
+          this._router.navigate(['profile']);
+        }
+        else {
+          alert("Username o password incorrecto.");
+        }
+      },
+      error: (error) => {
+        console.error("Error en el login:", error);
+        if (error.status === 500) {
+          alert("Error en el servidor. Por favor, inténtelo más tarde.");
+        } else if (error.status === 0) {
+          alert("No se puede conectar con el servidor. Verifique su conexión.");
+        } else if (error.status === 401) {
+          alert("Credenciales incorrectas.");
+        } else {
+          alert("Ha ocurrido un error. Por favor, inténtelo de nuevo.");
+        }
       }
     })
   }
